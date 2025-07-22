@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Amazon Clone</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="index.html" style="color:white; text-decoration:none">Amazon</a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="signin.html" id="signin-link">Sign In</a>
+      <button id="theme-toggle">Toggle Theme</button>
+    </div>
+  </header>
+
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-summary" id="cart-summary" style="display: none;">
+      <p id="total-price"></p>
+      <button onclick="clearCart()">Clear Cart</button>
+      <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Amazon Clone. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.navbar {
+  background-color: #131921;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.hero {
+  background-color: #fddede;
+  padding: 20px;
+  text-align: center;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 200px;
+}
+
+button {
+  cursor: pointer;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0c14b;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #e2b33c;
+}
+
+.cart-container, .signin-container, .checkout-container, .order-history-container, .help-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+}

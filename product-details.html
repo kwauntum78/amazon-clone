@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="index.html" style="color:white;text-decoration:none">Amazon</a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="signin.html" id="signin-link">Sign In</a>
+      <span id="welcome-user"></span>
+      <button id="theme-toggle">Toggle Theme</button>
+    </div>
+  </header>
+
+  <main class="product-detail-container">
+    <h2 id="product-name">Product Name</h2>
+    <img id="product-image" src="" alt="Product Image" style="width: 300px;">
+    <p><strong>Price:</strong> ₹<span id="product-price"></span></p>
+    <p><strong>Manufacturer:</strong> <span id="product-manufacturer"></span></p>
+    <p><strong>Description:</strong> <span id="product-description"></span></p>
+    <div class="cart-control" id="detail-cart-control"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Amazon Clone. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("name");
+
+    const productDetails = {
+      "Air Conditioner": {
+        price: 24999,
+        manufacturer: "Samsung",
+        description: "1.5 Ton Inverter Split AC with Fast Cooling."
+      },
+      "Refrigerator": {
+        price: 19999,
+        manufacturer: "LG",
+        description: "Double Door 260L Refrigerator with Smart Inverter."
+      },
+      "PS5 Slim Digital": {
+        price: 44990,
+        manufacturer: "Sony",
+        description: "Next-gen PlayStation 5 console - Digital Edition."
+      },
+      "PS5 Slim Disc": {
+        price: 49990,
+        manufacturer: "Sony",
+        description: "PlayStation 5 Slim with Disc Drive for physical games."
+      }
+    };
+
+    const detail = productDetails[product];
+    if (detail) {
+      document.getElementById("product-name").textContent = product;
+      document.getElementById("product-price").textContent = detail.price;
+      document.getElementById("product-manufacturer").textContent = detail.manufacturer;
+      document.getElementById("product-description").textContent = detail.description;
+      document.getElementById("product-image").src = `images/${product.toLowerCase().replace(/\s+/g, '_')}.jpg`;
+    }
+
+    // Load quantity UI
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let userData = JSON.parse(localStorage.getItem("user"));
+    let itemMap = {};
+    cart.forEach(item => itemMap[item] = (itemMap[item] || 0) + 1);
+
+    function updateDetailUI() {
+      const control = document.getElementById("detail-cart-control");
+      const qty = itemMap[product] || 0;
+      if (!userData) {
+        control.innerHTML = '<button onclick="window.location.href=\'signin.html\'">Sign in to add to cart</button>';
+        return;
+      }
+      if (qty === 0) {
+        control.innerHTML = `<button onclick="addToCart('${product}')">Add to Cart</button>`;
+      } else {
+        control.innerHTML = `
+          <button onclick="decreaseQuantity('${product}')">-</button>
+          <span>${qty}</span>
+          <button onclick="increaseQuantity('${product}')">+</button>
+        `;
+      }
+    }
+
+    function addToCart(name) {
+      cart.push(name);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      itemMap[name] = (itemMap[name] || 0) + 1;
+      updateDetailUI();
+    }
+
+    function increaseQuantity(name) {
+      cart.push(name);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      itemMap[name]++;
+      updateDetailUI();
+    }
+
+    function decreaseQuantity(name) {
+      const index = cart.indexOf(name);
+      if (index > -1) cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      itemMap[name] = Math.max((itemMap[name] || 1) - 1, 0);
+      updateDetailUI();
+    }
+
+    updateDetailUI();
+
+    // Theme toggle and user welcome
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      body.classList.add("dark-mode");
+    }
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+    });
+
+    const welcomeUser = document.getElementById("welcome-user");
+    if (userData && userData.name && welcomeUser) {
+      welcomeUser.textContent = `Welcome ${userData.name}`;
+      const signInLink = document.getElementById("signin-link");
+      if (signInLink) signInLink.remove();
+      const signOut = document.createElement("a");
+      signOut.href = "#";
+      signOut.textContent = "Sign Out";
+      signOut.onclick = () => {
+        localStorage.removeItem("user");
+        window.location.reload();
+      };
+      document.querySelector(".nav-links").appendChild(signOut);
+    }
+  </script>
+</body>
+</html>

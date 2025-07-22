@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon Clone</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Amazon</div>
+    <input type="text" class="search-bar" placeholder="Search Amazon.in" />
+    <div class="nav-links">
+      <span id="welcome-user"></span>
+      <a id="signin-link" href="signin.html">Sign In</a>
+      <a href="cart.html">Cart</a>
+      <a href="help.html">Help</a>
+      <button id="theme-toggle">Toggle Theme</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Big Deals on Trending Products</h2>
+    <img src="images/saree.jpg" alt="Sarees" />
+  </section>
+
+  <section class="products">
+    <div class="section">
+      <h3>Home Appliances | Up to 55% Off</h3>
+      <div class="product-list">
+        <div class="product-card">
+          <img src="images/ac.jpg" alt="AC" />
+          <h4><a href="product_detail.html?name=Air%20Conditioner">Air Conditioner</a></h4>
+          <p>₹24,999 <span class="discount">(-20%)</span></p>
+          <div class="cart-control" data-product="Air Conditioner"></div>
+        </div>
+        <div class="product-card">
+          <img src="images/fridge.jpg" alt="Fridge" />
+          <h4><a href="product_detail.html?name=Refrigerator">Refrigerator</a></h4>
+          <p>₹19,999 <span class="discount">(-25%)</span></p>
+          <div class="cart-control" data-product="Refrigerator"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>PlayStation 5 Slim & Accessories</h3>
+      <div class="product-list">
+        <div class="product-card">
+          <img src="images/ps5_digital.jpg" alt="PS5 Digital" />
+          <h4><a href="product_detail.html?name=PS5%20Slim%20Digital">PS5 Slim Digital</a></h4>
+          <p>₹44,990 <span class="discount">(-10%)</span></p>
+          <div class="cart-control" data-product="PS5 Slim Digital"></div>
+        </div>
+        <div class="product-card">
+          <img src="images/ps5_disc.jpg" alt="PS5 Disc" />
+          <h4><a href="product_detail.html?name=PS5%20Slim%20Disc">PS5 Slim Disc</a></h4>
+          <p>₹49,990 <span class="discount">(-8%)</span></p>
+          <div class="cart-control" data-product="PS5 Slim Disc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Amazon Clone. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
